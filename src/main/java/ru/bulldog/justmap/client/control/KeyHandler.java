@@ -1,8 +1,7 @@
 package ru.bulldog.justmap.client.control;
 
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.options.KeyBinding;
-
+import net.minecraft.client.option.KeyBinding;
 import ru.bulldog.justmap.JustMap;
 import ru.bulldog.justmap.client.JustMapClient;
 import ru.bulldog.justmap.client.config.ConfigFactory;

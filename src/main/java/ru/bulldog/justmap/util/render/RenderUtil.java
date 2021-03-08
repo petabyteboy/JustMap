@@ -12,9 +12,9 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexFormat;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.texture.TextureManager;
-import net.minecraft.client.util.math.AffineTransformation;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.AffineTransformation;
 import net.minecraft.util.math.Matrix3f;
 import net.minecraft.util.math.Matrix4f;
 import net.minecraft.text.Text;
@@ -147,10 +147,10 @@ public class RenderUtil extends DrawableHelper {
     }
     
     public static void startDraw(VertexFormat vertexFormat) {
-    	startDraw(GLC.GL_QUADS, vertexFormat);
+    	startDraw(VertexFormat.DrawMode.QUADS, vertexFormat);
     }
     
-    public static void startDraw(int mode, VertexFormat vertexFormat) {
+    public static void startDraw(VertexFormat.DrawMode mode, VertexFormat vertexFormat) {
     	vertexBuffer.begin(mode, vertexFormat);
     }
     
@@ -176,7 +176,7 @@ public class RenderUtil extends DrawableHelper {
 	
 		RenderSystem.disableTexture();
 		RenderSystem.color4f(r, g, b, a);
-		startDraw(GLC.GL_TRIANGLES, VertexFormats.POSITION);
+		startDraw(VertexFormat.DrawMode.TRIANGLES, VertexFormats.POSITION);
 		vertexBuffer.vertex(x1, y1, 0).next();
 		vertexBuffer.vertex(x2, y2, 0).next();
 		vertexBuffer.vertex(x3, y3, 0).next();
@@ -192,7 +192,7 @@ public class RenderUtil extends DrawableHelper {
 	
 		RenderSystem.disableTexture();
 		RenderSystem.color4f(r, g, b, a);
-		startDraw(GLC.GL_LINES, VertexFormats.POSITION);
+		startDraw(VertexFormat.DrawMode.LINES, VertexFormats.POSITION);
 		vertexBuffer.vertex(x1, y1, 0).next();
 		vertexBuffer.vertex(x2, y2, 0).next();
 		endDraw();
@@ -224,7 +224,7 @@ public class RenderUtil extends DrawableHelper {
 	
 	public static void drawCircleVertices(double x, double y, double radius) {
 		double pi2 = Math.PI * 2;
-		startDraw(GLC.GL_TRIANGLE_FAN, VertexFormats.POSITION);
+		startDraw(VertexFormat.DrawMode.TRIANGLE_FAN, VertexFormats.POSITION);
 		vertexBuffer.vertex(x, y, 0).next();
 		int sides = 50;
 		for (int i = 0; i <= sides; i++) {
@@ -253,7 +253,7 @@ public class RenderUtil extends DrawableHelper {
 		RenderSystem.enableBlend();
 		RenderSystem.disableTexture();
 		RenderSystem.defaultBlendFunc();
-		startDraw(GLC.GL_QUADS, VertexFormats.POSITION_COLOR);
+		startDraw(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
 		vertexBuffer.vertex(matrix4f, (float) x, (float) (y + h), 0.0F).color(r, g, b, a).next();
 		vertexBuffer.vertex(matrix4f, (float) (x + w), (float) (y + h), 0.0F).color(r, g, b, a).next();
 		vertexBuffer.vertex(matrix4f, (float) (x + w), (float) y, 0.0F).color(r, g, b, a).next();

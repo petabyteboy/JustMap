@@ -3,6 +3,8 @@ package ru.bulldog.justmap.util.math;
 import java.util.Comparator;
 
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.Vec3i;
 
 public class MathUtil {
 	
@@ -130,16 +132,6 @@ public class MathUtil {
 		return Math.sqrt(dist);
 	}
 
-	public static int packRgb(float r, float g, float b) {
-		return packRgb(floor(r * 255.0F), floor(g * 255.0F), floor(b * 255.0F));
-	}
-
-	public static int packRgb(int r, int g, int b) {
-		int i = (r << 8) + g;
-		i = (i << 8) + b;
-		return i;
-	}
-	
 	public static int colorDistance(int color1, int color2) {
 		int r1 = (color1 >> 16) & 255;
 		int g1 = (color1 >> 8) & 255;

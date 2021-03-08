@@ -296,7 +296,7 @@ public class ColorUtil {
 	}
 	
 	public static int blockColor(World world, BlockState state, BlockPos pos) {
-		int materialColor = state.getTopMaterialColor(world, pos).color;
+		int materialColor = state.getMapColor(world, pos).color;
 		if (ClientSettings.alternateColorRender) {
 			int blockColor = colorPalette.getBlockColor(state);
 			if (blockColor != 0x0) {

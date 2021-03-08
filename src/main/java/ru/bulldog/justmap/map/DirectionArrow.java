@@ -12,8 +12,8 @@ import net.minecraft.client.resource.metadata.AnimationResourceMetadata;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.util.math.Matrix3f;
 import net.minecraft.util.math.Matrix4f;
+import net.minecraft.util.math.Vec3f;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.client.util.math.Vector3f;
 import net.minecraft.util.Identifier;
 
 import ru.bulldog.justmap.JustMap;
@@ -45,7 +45,7 @@ public class DirectionArrow extends Sprite {
 			Tessellator tessellator = Tessellator.getInstance();
 			BufferBuilder builder = tessellator.getBuffer();
 			
-			builder.begin(7, vertexFormat);
+			builder.begin(VertexFormat.DrawMode.QUADS, vertexFormat);
 			
 			VertexConsumer vertexConsumer = ARROW.getTextureSpecificVertexConsumer(builder);
 			
@@ -56,7 +56,7 @@ public class DirectionArrow extends Sprite {
 			
 			matrix.push();
 			matrix.translate(x, y, 0);
-			matrix.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(rotation + 180));
+			matrix.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(rotation + 180));
 			
 			Matrix4f m4f = matrix.peek().getModel();
 			Matrix3f m3f = matrix.peek().getNormal();
